@@ -16,13 +16,13 @@ export default class MainTabs extends Component {
         return (
             <Fragment>
              <div className="tab">
-                  <Link href="/firstassignment">
+                  <Link href="/firstassignment" passHref={true}>
                     <a className={activeTab=='a1'?'active':''}>ASSIGNMENT 1</a>
                   </Link>
-                  <Link href="/secondassignment">
+                  <Link href="/secondassignment" passHref={true}>
                     <a className={activeTab=='a2'?'active':''}>ASSIGNMENT 2</a>
                   </Link>
-                  <Link href="/employee">
+                  <Link href="/employee" passHref={true}>
                     <a className={activeTab=='a3'?'active':''} >ASSIGNMENT 3</a>
                   </Link>
                     
