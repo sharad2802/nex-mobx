@@ -4,6 +4,7 @@ import {toJS} from 'mobx';
 import { inject, observer} from 'mobx-react'
 import withData from '@/components/hoc/with-data'
 import Head from '@/components/head'
+import MainTabs from '@/components/headertabs/mainTab'
 import TabFirst from '@/components/tabs/firstTab'
 import TabSecond from '@/components/tabs/secondTab'
 import {MainDiv,TopHeader, ContainerWrp, GridTable, HeadingWrp, TestMsg} from '@/styles/style';
@@ -98,22 +99,7 @@ export default class Tabs extends Component {
             </HeadingWrp>
 
             <ContainerWrp>
-              <div className="tab">
-                  
-                  <Link href="/firstassignment">
-                    <a>ASSIGNMENT 1</a>
-                  </Link>
-                  
-                 
-                  <Link href="/tab">
-                    <a className="active">ASSIGNMENT 2</a>
-                  </Link>
-                 
-                    <Link href="/employee">
-                    <a>ASSIGNMENT 3</a>
-                    </Link>
-                    
-              </div>
+            <MainTabs activeTab={'a2'}/>
               <div className="tabcontent" style={{display:'block'}}>
 
               <div className="tab">

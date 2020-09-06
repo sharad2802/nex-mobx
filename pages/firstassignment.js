@@ -4,6 +4,7 @@ import { inject, observer} from 'mobx-react'
 import withData from '@/components/hoc/with-data'
 
 import Head from '@/components/head'
+import MainTabs from '@/components/headertabs/mainTab'
 import {MainDiv, ContainerWrp, GridTable, HeadingWrp} from '@/styles/style';
 import {  MainWrp, H2, H3,  LHS } from "@/styles/element";
 
@@ -50,18 +51,7 @@ export default class Login extends Component {
             </HeadingWrp>
 
             <ContainerWrp>
-              <div className="tab">
-                  <Link href="/firstassignment">
-                    <a className="active">ASSIGNMENT 1</a>
-                  </Link>
-                 
-                  <Link href="/tab">
-                    <a>ASSIGNMENT 2</a>
-                  </Link>
-                  <Link href="/employee">
-                  <a>ASSIGNMENT 3</a>
-                    </Link>
-              </div>
+            <MainTabs activeTab={'a1'}/>
               <div className="tabcontent" style={{display:'block'}}>
               <H3>List</H3>
                 

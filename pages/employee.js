@@ -1,6 +1,7 @@
 import { Component, Fragment} from 'react'
 import {toJS} from 'mobx';
 import Link from 'next/link'
+import MainTabs from '@/components/headertabs/mainTab'
 import { inject, observer} from 'mobx-react'
 import withData from '@/components/hoc/with-data'
 import Head from '@/components/head'
@@ -57,17 +58,7 @@ export default class Employee extends Component {
             </HeadingWrp>
 
             <ContainerWrp>
-              <div className="tab">
-                  <Link href="/firstassignment">
-                  <a>ASSIGNMENT 1</a>
-                    </Link>
-                  <Link  href="/tab">
-                    <a>ASSIGNMENT 2</a>
-                  </Link>
-                    <Link  href="/employee">
-                      <a className="active">ASSIGNMENT 3</a>
-                    </Link>
-              </div>
+            <MainTabs activeTab={'a3'}/>
               <div className="tabcontent" style={{display:'block'}}>
               <H3>List</H3>
                 
