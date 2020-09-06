@@ -5,6 +5,8 @@ import MainTabs from '@/components/headertabs/mainTab'
 import { inject, observer} from 'mobx-react'
 import withData from '@/components/hoc/with-data'
 import Head from '@/components/head'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {MainDiv,TopHeader, ContainerWrp, GridTable, HeadingWrp, TestMsg} from '@/styles/style';
 import { MenuLink, MainWrp, H2, H3, WD25, WD33, WD66,  WD50, WD100, InputTag, TextHolderTag, SelectTag, Btn, ResetBtn, SaveBtn, ActionBtn, ActionBtnEdit, ActionBtnDownload, ActionBtnSave, ActionBtnDelete, Row, TAC, TAL, TAR, BrdrBtm, FlagBtnActive,FlagBtnDeActive, ActionBtnUl, MB10,SuccesStatus,ErrorStatus, LoaderStatus, ChooseImgForm, RHS, LHS } from "@/styles/element";
 
@@ -23,7 +25,7 @@ export default class Employee extends Component {
     }
 
     componentDidMount(){
-        console.log('{{third}}',this.props.employeeStore.getEmployeeFirst)
+        console.log('{{third}}',this.props.employeeStore.getUpdatedOrNot)
     }
 
     sortAgeList=()=>{
@@ -40,6 +42,23 @@ export default class Employee extends Component {
 
     inputChange= (e)=>{
         this.props.employeeStore.filterList(e.target.value)
+    }
+
+    handleScroll = (e)=>{
+      const target = event.target
+      let context = this
+      if(target.scrollHeight - target.scrollTop === target.clientHeight){
+        console.log('{{scrolling}}{{end}}')
+        let updated = context.props.employeeStore.getUpdatedOrNot
+        let text = updated ? 'End Of List' :'Simulating Fetch' 
+        toast.success(text,{
+          position: toast.POSITION.TOP_LEFT,
+          autoClose: 1000,
+        })
+        setTimeout(()=>{
+          context.props.employeeStore.updateList()
+        },1000)
+      }
     }
 
     render() {
@@ -62,8 +81,8 @@ export default class Employee extends Component {
               <div className="tabcontent" style={{display:'block'}}>
               <H3>List</H3>
                 
-                <GridTable>    
-                  <table className="overFlowTable">
+                <GridTable style={{'display':'inline-block'}}>    
+                  <table onScroll={context.handleScroll} style={{'overflowY':'scroll','display':'block','height':'250px'}} className="overFlowTable">
                     <thead>
                       <tr>
                         <th onClick={()=>{ context.sortItemList('name') }}>Name</th>
@@ -83,7 +102,7 @@ export default class Employee extends Component {
               </div>
             </ContainerWrp>
         </MainWrp>
-        
+        <ToastContainer />
         </MainDiv>
             </div>
         </Fragment>

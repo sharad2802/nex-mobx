@@ -6,6 +6,7 @@ class Employee {
     @observable filteredEmployeeData = '';
     @observable employeeDataSecond = pageData[1];
     @observable filterFlag = false;
+    @observable updated = false;
     
       get getEmployeeFirst() {
         return this.employeeData
@@ -13,6 +14,20 @@ class Employee {
 
       get getEmployeeSecond() {
         return this.employeeDataSecond
+      }
+     
+      get getUpdatedOrNot() {
+        return this.updated
+      }
+
+      @action
+      updateList = () => {
+          let oldData = this.employeeData
+          let newData = this.employeeDataSecond
+          if(!this.updated){
+            this.updated = true;
+            this.employeeData = oldData.concat(newData);
+          }
       }
 
       @action
