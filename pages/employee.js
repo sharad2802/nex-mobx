@@ -45,20 +45,20 @@ export default class Employee extends Component {
     }
 
     handleScroll = (e)=>{
-      const target = event.target
-      let context = this
-      if(target.scrollHeight - target.scrollTop === target.clientHeight){
-        console.log('{{scrolling}}{{end}}')
-        let updated = context.props.employeeStore.getUpdatedOrNot
-        let text = updated ? 'End Of List' :'Simulating Fetch' 
-        toast.success(text,{
-          position: toast.POSITION.TOP_LEFT,
-          autoClose: 1000,
-        })
-        setTimeout(()=>{
-          context.props.employeeStore.updateList()
-        },1000)
-      }
+      // const target = event.target
+      // let context = this
+      // if(target.scrollHeight - target.scrollTop === target.clientHeight){
+      //   console.log('{{scrolling}}{{end}}')
+      //   let updated = context.props.employeeStore.getUpdatedOrNot
+      //   let text = updated ? 'End Of List' :'Simulating Fetch' 
+      //   toast.success(text,{
+      //     position: toast.POSITION.TOP_LEFT,
+      //     autoClose: 1000,
+      //   })
+      //   setTimeout(()=>{
+      //     context.props.employeeStore.updateList()
+      //   },1000)
+      // }
     }
 
     render() {
