@@ -20,9 +20,9 @@ export default class MainTabs extends Component {
                     <a className={activeTab=='a1'?'active':''}>ASSIGNMENT 1</a>
                   </Link>
                   
-                  <Link href="/secondassignment">
-                    <a className={activeTab=='a2'?'active':''}>ASSIGNMENT 2</a>
-                  </Link>
+                  {/* <Link href="/secondassignment"> */}
+                    <a href="/secondassignment" className={activeTab=='a2'?'active':''}>ASSIGNMENT 2</a>
+                  {/* </Link> */}
                  
                     <Link href="/employee">
                     <a className={activeTab=='a3'?'active':''} >ASSIGNMENT 3</a>
