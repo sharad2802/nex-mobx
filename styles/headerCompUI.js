@@ -1,6 +1,7 @@
 import React from 'react';
 import { MenuLink } from "@/styles/element";
 import {TopHeader} from '@/styles/style';
+import Link from 'next/link'
 
 const HeaderWrp = function () {
 	return(

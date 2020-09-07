@@ -1,6 +1,7 @@
 import { Component, Fragment } from 'react'
 import { Provider } from 'mobx-react'
 import { initStore } from '@/stores'
+import Link from 'next/link'
 
 import Footer from '@/components/footer'
 

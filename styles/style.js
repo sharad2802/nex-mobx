@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link'
 import { MenuLink, MainWrp, H2, H3, WD25, WD33, WD50, WD100, InputTag, TextHolderTag, SelectTag, Btn, ResetBtn, SaveBtn, ActionBtn, ActionBtnEdit, ActionBtnDownload, ActionBtnSave, ActionBtnDelete, Row, TAC, TAL, TAR, BrdrBtm, FlagBtnActive,FlagBtnDeActive, ActionBtnUl, MB10,SuccesStatus,ErrorStatus, LoaderStatus, ChooseImgForm, LHS, RHS, clearFix} from "./element";
 // top header bar
 const TopHeader = styled.header`

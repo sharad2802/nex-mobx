@@ -1,6 +1,7 @@
 import { Component, Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import request from 'superagent'
+import Link from 'next/link'
 import withData from '@/components/hoc/with-data'
 
 import Head from '@/components/head'

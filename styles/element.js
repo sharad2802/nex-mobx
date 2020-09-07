@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import Link from 'next/link'
 // clearfix (common)
 function clearFix() {
     return `

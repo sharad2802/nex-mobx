@@ -19,7 +19,7 @@ module.exports = withCSS(withSass({
       }
       return entries;
     };
-
+    experimental: { css: true }
     // Fixes npm packages that depend on `fs` module
     config.node = {
       fs: 'empty'
