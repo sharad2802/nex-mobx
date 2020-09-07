@@ -1,5 +1,6 @@
 import { Component, Fragment } from 'react'
 import Link from 'next/link'
+import {toJS} from 'mobx';
 import { inject, observer} from 'mobx-react'
 import withData from '@/components/hoc/with-data'
 
@@ -59,9 +60,9 @@ export default class Login extends Component {
                   <table className="overFlowTable">
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Sex</th>
+                        <th onClick={()=>{ context.props.customersStore.sortByItem('name') }}>Name</th>
+                        <th onClick={()=>{ context.props.customersStore.sortByAge() }}>Age</th>
+                        <th onClick={()=>{ context.props.customersStore.sortByItem('sex') }} >Sex</th>
                       </tr>
                     </thead>
                     <tbody>

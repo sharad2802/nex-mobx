@@ -20,10 +20,39 @@ class Customer {
         this.addressList = addressList[0]['address']
         this.selectedCustomerName = addressList[0]['name']
       }
+
+      @action
+      sortByAge = () => {
+          let firstAge= this.customer[0]['age']
+          let lengthOfList = this.customer.length-1
+          let lastAge = this.customer[lengthOfList]['age']
+          this.customer = this.customer.slice().sort(function(a, b){
+            if(firstAge>lastAge){
+                return a.age - b.age;
+            }
+            return b.age - a.age;
+            
+          });
+      }
+
+      @action
+      sortByItem = (item) => {
+          let firstSalary= this.customer[0][item]
+          let lengthOfList = this.customer.length-1
+          let lastSalary = this.customer[lengthOfList][item]
+          this.customer = this.customer.slice().sort(function(a, b){
+            if(firstSalary>lastSalary){
+                return a[item].localeCompare(b[item]);
+            }
+            return b[item].localeCompare(a[item]);
+            
+          });
+      }
     
       @computed get customerCount(){
           return this.customer.length
       }
+      
 
   }
 

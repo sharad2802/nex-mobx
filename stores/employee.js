@@ -24,51 +24,38 @@ class Employee {
       updateList = () => {
           let oldData = this.employeeData
           let newData = this.employeeDataSecond
+          let filterList = this.filteredEmployeeData
           if(!this.updated){
             this.updated = true;
             this.employeeData = oldData.concat(newData);
+            filterList && filterList.length && (this.filteredEmployeeData=filterList.concat(newData))
           }
       }
 
       @action
-      sortByAge = () => {
-          console.log('{{sort}}',this.employeeData[0]['age'],this.employeeData.length,this.employeeData[this.employeeData.length-1]['age'])
-          let firstAge= this.employeeData[0]['age']
-          let lengthOfList = this.employeeData.length-1
-          let lastAge = this.employeeData[lengthOfList]['age']
-        this.employeeData = this.employeeData.slice().sort(function(a, b){
-            if(firstAge>lastAge){
-                return a.age - b.age;
+      sortByInteger = (item) => {
+          let empData = this.filterFlag ? this.filteredEmployeeData :this.employeeData
+          let listToupdate = this.filterFlag ? "filteredEmployeeData" :"employeeData"
+          let firstItem= empData[0][item]
+          let lengthOfList = empData.length-1
+          let lastItme = empData[lengthOfList][item]
+          this[listToupdate] = empData.slice().sort(function(a, b){
+            if(firstItem>lastItme){
+                return a[item] - b[item];
             }
-            return b.age - a.age;
-            
-          });
-      }
-
-      @action
-      sortBySalary = () => {
-          console.log('{{sort}}',this.employeeData[0]['age'],this.employeeData.length,this.employeeData[this.employeeData.length-1]['age'])
-          let firstSalary= this.employeeData[0]['salary']
-          let lengthOfList = this.employeeData.length-1
-          let lastSalary = this.employeeData[lengthOfList]['salary']
-        this.employeeData = this.employeeData.slice().sort(function(a, b){
-            if(firstSalary>lastSalary){
-                return a.salary - b.salary;
-            }
-            return b.salary - a.salary;
+            return b[item] - a[item];
             
           });
       }
 
       @action
       sortByItem = (item) => {
-          console.log('{{isot}}',item)
-          let firstSalary= this.employeeData[0][item]
-          let lengthOfList = this.employeeData.length-1
-          let lastSalary = this.employeeData[lengthOfList][item]
-          console.log('{{isot}}',item,firstSalary,lastSalary,firstSalary>lastSalary)
-          this.employeeData = this.employeeData.slice().sort(function(a, b){
-              console.log('{{rrrr}}',a,a[item],firstSalary>lastSalary)
+          let empData = this.filterFlag ? this.filteredEmployeeData :this.employeeData
+          let listToupdate = this.filterFlag ? "filteredEmployeeData" :"employeeData"
+          let firstSalary= empData[0][item]
+          let lengthOfList = empData.length-1
+          let lastSalary = empData[lengthOfList][item]
+          this[listToupdate] = empData.slice().sort(function(a, b){
             if(firstSalary>lastSalary){
                 return a[item].localeCompare(b[item]);
             }
@@ -78,22 +65,13 @@ class Employee {
       }
 
       @action
-      filterList = (item) => {
-          console.log('{{isot}}',item)
+      filterList = (item,type) => {
           let duplicateList = this.employeeData;
-          
           let newList = duplicateList.filter(function(v, i) {
-              console.log('>>>>>>',item,v["name"],v["name"].startsWith(item))
-              let name = v["name"].toLowerCase()
-              let designation = v["designation"].toLowerCase()
+              let name = v[type].toLowerCase()
               let sItem = item.toLowerCase()
-            //   if(){
-
-            //   }
-            return ((name.startsWith(sItem) || designation.startsWith(sItem)));
+            return ((name.startsWith(sItem)));
           })
-
-          console.log('{{filllll}}',newList)
           this.filteredEmployeeData = newList;
           this.filterFlag = true
       }

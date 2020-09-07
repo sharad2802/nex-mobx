@@ -13,7 +13,6 @@ export default class MainTabs extends Component {
     render() {
         let context = this;
         const {activeTab} = this.props;
-        console.log('{{activeTab}}', this.props,activeTab,activeTab=='a1')
         return (
             <Fragment>
              <div className="tab">

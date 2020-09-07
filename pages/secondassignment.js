@@ -61,7 +61,6 @@ export default class Tabs extends Component {
         this.props.tabsStore.setUserFromLs(userFromLs);
         this.props.tabsStore.setContactFromLs(userContactFromLs);
         let checkSubmitted = ls.get('submitted')
-        console.log('{{dsad}}',this.props)
         this.props.tabsStore.setSubmitted(checkSubmitted);
         checkSubmitted && this.props.tabsStore.changeTab('second')
     }

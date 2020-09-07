@@ -23,33 +23,24 @@ export default class Employee extends Component {
         super();
     }
 
-    componentDidMount(){
-        console.log('{{third}}',this.props.employeeStore.getUpdatedOrNot)
-    }
-
-    sortAgeList=()=>{
-        this.props.employeeStore.sortByAge()
-    }
-
-    sortSalaryList=()=>{
-        this.props.employeeStore.sortBySalary()
+    sortIntList=(item)=>{
+        this.props.employeeStore.sortByInteger(item)
     }
 
     sortItemList=(item)=>{
         this.props.employeeStore.sortByItem(item)
     }
 
-    inputChange= (e)=>{
-        this.props.employeeStore.filterList(e.target.value)
+    inputChange= (e,type)=>{
+        this.props.employeeStore.filterList(e.target.value,type)
     }
 
     handleScroll = (e)=>{
       const target = event.target
       let context = this
       if(target.scrollHeight - target.scrollTop === target.clientHeight){
-        console.log('{{scrolling}}{{end}}')
         let updated = context.props.employeeStore.getUpdatedOrNot
-        let text = updated ? 'End Of List' :'Simulating Fetch' 
+        let text = updated ? 'End Of List' :'Simulating Fetch in a sec' 
         toast.success(text,{
           position: toast.POSITION.TOP_LEFT,
           autoClose: 1000,
@@ -63,6 +54,9 @@ export default class Employee extends Component {
     render() {
         let context= this
         let list = toJS(this.props.employeeStore.getEmployeeFirst);
+        let filteredList = this.props.employeeStore.filteredEmployeeData;
+        let filterFlag = this.props.employeeStore.filterFlag
+        let renderList = filterFlag ? filteredList : list
         return (
         <Fragment>
             <div>
@@ -81,18 +75,39 @@ export default class Employee extends Component {
               <H3>List</H3>
                 
                 <GridTable style={{'display':'inline-block'}}>    
+                <Row className="clearfix">
+                <WD66 className="wd33" >
+                      <WD100 className="textHolder" >
+                        <p className="title clearfix">
+                          <label className="LHS">Filter by name</label>
+                          <span className="star RHS">*</span>
+                        </p>
+                        <InputTag id="title" onChange={(e) => this.inputChange(e,'name')}></InputTag>
+                      </WD100>
+                  </WD66>
+                    <WD66 className="wd33" >
+                      <WD100 className="textHolder" >
+                        <p className="title clearfix">
+                          <label className="LHS">Filter by Designation</label>
+                          <span className="star RHS">*</span>
+                        </p>
+                        <InputTag id="title" onChange={(e) => this.inputChange(e,'designation')}></InputTag>
+                      </WD100>
+                    </WD66>
+                    
+                </Row>
                   <table onScroll={context.handleScroll} style={{'overflowY':'scroll','display':'block','height':'250px'}} className="overFlowTable">
                     <thead>
                       <tr>
                         <th onClick={()=>{ context.sortItemList('name') }}>Name</th>
-                        <th onClick={()=>{ context.sortAgeList() }}>Age</th>
+                        <th onClick={()=>{ context.sortIntList('age') }}>Age</th>
                         <th onClick={()=>{ context.sortItemList('company') }}>Company</th>
                         <th onClick={()=>{ context.sortItemList('designation') }}>Designation</th>
-                        <th onClick={()=>{ context.sortSalaryList() }}>Salary</th>
+                        <th onClick={()=>{ context.sortIntList('salary') }}>Salary</th>
                       </tr>
                     </thead>
                     <tbody>
-                    {list.map((item,index)=>{ 
+                    { renderList.map((item,index)=>{ 
                         return <tr key={item._id}><td>{item.name}</td><td>{item.age}</td><td>{item.company}</td><td>{item.designation}</td><td>{item.salary}</td></tr>
                      })}
                     </tbody>
